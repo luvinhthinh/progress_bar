@@ -1,0 +1,19 @@
+.box {
+    padding : 20px;
+    width: 50%;
+
+}
+
+.bar-background {
+    height: 35px;
+}
+
+.bar-front {
+    background-color: lightblue;
+    padding: 5px;
+}
+
+.usage-display {
+    color: black;
+    font-weight: bold;
+}
