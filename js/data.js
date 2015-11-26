@@ -1,18 +1,23 @@
 
 // data is an array of progress bar information
-// max is the upper bound of progress bar
-// completeColor : color of part of progress bar which illustrates completed area
-// incompleteColor : color of part of progress bar which illustrates incompleted area
+// min is the lower bound of progress bar
+// currentValue represents current value of progress bar at one time
+// colorChangeThreshold : color of progress bar when its currentValue is below the limit
 
 data = [
-  {
-    max : 100,
-    completeColor : 'red',
-    incompleteColor : 'blue'
-  },
-  {
-    max : 110,
-    completeColor : 'yellow',
-    incompleteColor : 'blue'
-  }
+    {
+        min : 0,
+        colorChangeThreshold : 100,
+        currentValue : 25
+    },
+    {
+        min : 0,
+        colorChangeThreshold : 100,
+        currentValue : 50
+    },
+    {
+        min : 0,
+        colorChangeThreshold : 100,
+        currentValue : 75
+    }
 ];
