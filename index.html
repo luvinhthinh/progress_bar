@@ -1,50 +1,71 @@
 <!doctype html>
 <html lang='en-GB'>
 <head>
-  <meta charset='utf-8'>
-  <title>Progress Bar Fun</title>
+    <meta charset='utf-8'>
+    <title>Progress Bar Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my-progress-bar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <h1>Ractive test</h1>
+  <h1>Progress Bars Demo</h1>
 
   <div id='container'></div>
 
-  <!--
-       2. You can load a template in many ways. For convenience, we'll include it in
-       a script tag so that we don't need to mess around with AJAX or multiline strings.
-       Note that we've set the type attribute to 'text/ractive' - though it can be
-       just about anything except 'text/javascript'
-  -->
-  <script id='template' type='text/ractive'>
-    <p>Hello, {{name}}!</p>
+
+  <script id='template-progressbar' type='text/ractive' >
+    <div class="box">
+        {{#bars}}
+            <div class="progress bar-background">
+                <div class="progress-bar bar-front"
+                    role="progressbar"
+                    aria-valuenow="{{currentValue}}"
+                    aria-valuemin="{{min}}"
+                    aria-valuemax="100"
+                    style="width:{{currentValue}}%">
+
+                    <div class="usage-display">
+                    {{currentValue}}%
+                    </div>
+                </div>
+            </div>
+        {{/}}  <!--- loop bars end -->
+    </div>
+
   </script>
 
-  <!--
-       3. You can always get the most recent stable version from the URL below.
-       If you want the newest features (unstable!), use the 'edge' version instead:
-
-           http://cdn.ractivejs.org/edge/ractive.min.js
-
-       If you need IE8 support, change 'ractive' to 'ractive-legacy'.
-  -->
   <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
 
-  <!--
-       4. We've got an element in the DOM, we've created a template, and we've
-       loaded the library - now it's time to build our Hello World app.
-  -->
   <script>
-    var ractive = new Ractive({
-      // The `el` option can be a node, an ID, or a CSS selector.
+      var data = [
+          {
+              min : 0,
+              colorChangeThreshold : 100,
+              currentValue : 25
+          },
+          {
+              min : 0,
+              colorChangeThreshold : 100,
+              currentValue : 50
+          },
+          {
+              min : 0,
+              colorChangeThreshold : 100,
+              currentValue : 75
+          }
+      ];
+
+
+      var ractive = new Ractive({
       el: '#container',
-
-      // We could pass in a string, but for the sake of convenience
-      // we're passing the ID of the <script> tag above.
-      template: '#template',
-
-      // Here, we're passing in some initial data
-      data: { name: 'world' }
+      template: '#template-progressbar',
+      data: {
+          bars : data
+      }
     });
   </script>
 </body>
